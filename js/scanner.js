@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Virtual Scanner</title>
-</head>
-<body>
-  <textarea id="buffer" rows="10" cols="50"></textarea>
-  
-  <!-- <script>
-    const keystrokeBuffer = [];
+ const keystrokeBuffer = [];
     let timerId;
 
     // Function to start buffering keystrokes
@@ -34,8 +25,3 @@
 
     // Start buffering when the page loads
     window.onload = startBuffering;
-  </script> -->
-
-  <script src="js/scanner.js"></script>
-</body>
-</html>
