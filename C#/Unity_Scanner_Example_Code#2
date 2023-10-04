@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Scanner : MonoBehaviour
+{
+    private StringBuilder inputBuffer;
+    private float captureDuration = 1.0f; // Change this to your desired duration in seconds
+    private bool capturing = false;
+
+    private void Start()
+    {
+        inputBuffer = new StringBuilder();
+    }
+
+    private void Update()
+    {
+        if (capturing)
+        {
+            if (Input.anyKeyDown)
+            {
+                string inputText = GetInputText();
+                inputBuffer.Append(inputText);
+            }
+
+            if (Time.time >= captureDuration)
+            {
+                capturing = false;
+                Debug.Log("Captured Text: " + inputBuffer.ToString());
+                inputBuffer.Clear();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) // Change the key to start scanning as needed
+            {
+                StartCapturing();
+            }
+        }
+    }
+
+    private void StartCapturing()
+    {
+        capturing = true;
+        inputBuffer.Clear();
+    }
+
+    private string GetInputText()
+    {
+        string inputText = "";
+
+        foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(keyCode))
+            {
+                inputText += keyCode.ToString();
+            }
+        }
+
+        return inputText;
+    }
+}
